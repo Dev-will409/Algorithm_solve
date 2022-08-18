@@ -20,12 +20,12 @@ int solution(vector<vector<int> > maps)
     q.push(make_pair(0,0));
     int n = maps.size();
     int m = maps[0].size();
-    int ma[101][101] = {0,};
-    for(int i = 0; i < n; ++i){
-        for(int j = 0; j < m; ++j){
-            ma[i][j] = maps[i][j];
-        }
-    }
+    // int ma[101][101] = {0,};
+    // for(int i = 0; i < n; ++i){
+    //     for(int j = 0; j < m; ++j){
+    //         ma[i][j] = maps[i][j];
+    //     }
+    // }
     
     while(!q.empty()){
         int x =  q.front().first;
@@ -34,7 +34,7 @@ int solution(vector<vector<int> > maps)
         for(int i = 0; i < 4; ++i){
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if(CanGo(nx, ny, n,m, ma, step)){
+            if(nx >= 0 && ny >= 0 && nx < n && ny < m && maps[nx][ny] == 1 && step[nx][ny] == 0){
                 step[nx][ny] = step[x][y] + 1;
                 q.push(make_pair(nx, ny));  
             } 
