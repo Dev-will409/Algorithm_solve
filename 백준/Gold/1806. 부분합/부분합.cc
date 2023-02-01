@@ -1,42 +1,44 @@
 #include <iostream>
 
-using  namespace std;
+int arr[100001] = {0,};
 
 int main() {
     int n, s;
 
-    cin >> n >> s;
-
-    int arr[100000] = {};
-    int minn = 100000001;
-    int start=0;
-    int end = 0;
+    scanf("%d %d", &n, &s);
 
     for (int i = 0; i < n; ++i) {
-        cin >> arr[i];
+        scanf("%d", arr + i);
     }
 
-    int temp = arr[0];
+    int start, end;
+    start = 0;
+    end = 0;
+    int total = arr[start];
+    int min_len = 100002;
     while (start < n){
-        if(temp >= s){
-            if(minn > (end-start+1)) minn = end-start+1;
-            temp -= arr[start];
+        if(total >= s){
+            if(end-start+1 < min_len){
+                min_len = end-start+1;
+            }
+            total -= arr[start];
             if(start == end) end += 1;
             start += 1;
         }
         else{
             if(end == n-1){
-                temp -= arr[start];
+                total -= arr[start];
                 start += 1;
             }
             else{
                 end += 1;
-                temp += arr[end];
+                total += arr[end];
             }
         }
     }
 
-    if(minn == 100000001) cout << 0;
-    else cout << minn;
+    if(min_len == 100002) printf("0");
+    else printf("%d", min_len);
+
     return 0;
 }
