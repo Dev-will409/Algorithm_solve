@@ -48,8 +48,8 @@ int solution(vector<int> queue1, vector<int> queue2) {
         else{
             return answer;
         }
-        if(q1 == oq1 || q2 == oq1) return -1;
         if(answer > 600000) return -1;
+        if(q1 == oq1 || q2 == oq1) return -1;
     }
     
     
